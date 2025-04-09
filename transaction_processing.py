@@ -7,7 +7,7 @@ def main(student_id):
     spark = SparkSession.builder.appName("Process Transactions").getOrCreate()
 
     input_file = f"transactions_{student_id}.csv"
-    clean_output = f"cleaned_transactions_{student_id}.csv"
+    clean_output = f"processed_data_{student_id}.csv"
     bad_output = f"bad_rows_{student_id}.csv"
     expected_customer_id = f"STD_{student_id}"
 
