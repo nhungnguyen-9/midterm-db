@@ -6,7 +6,7 @@ import sys
 def main(student_id):
     spark = SparkSession.builder.appName("Analyze Transactions").getOrCreate()
 
-    input_file = f"cleaned_transactions_{student_id}.csv"
+    input_file = f"processed_data_{student_id}.csv"
 
     # Read cleaned data
     df = spark.read.option("header", True).csv(input_file, inferSchema=True)
@@ -31,7 +31,7 @@ def main(student_id):
         _sum("total_amount").alias("total_spending"),
         countDistinct("price").alias("distinct_products")
     )
-    customer_behavior.write.mode("overwrite").option("header", True).csv(f"customer_behavior_{student_id}.csv")
+    customer_behavior.write.mode("overwrite").option("header", True).csv(f"customer_segmentation_{student_id}.csv")
 
     # 3. Truy vấn Spark SQL - giảm đơn 3 tháng gần nhất
     monthly_orders = df.withColumn("year", year("order_date")) \

@@ -5,7 +5,7 @@ import sys
 def main(student_id):
     spark = SparkSession.builder.appName("Detect Suspect Transactions").getOrCreate()
 
-    input_file = f"cleaned_transactions_{student_id}.csv"
+    input_file = f"processed_data_{student_id}.csv"
     output_file = f"suspect_transactions_{student_id}.csv"
 
     # Đọc dữ liệu đã xử lý
